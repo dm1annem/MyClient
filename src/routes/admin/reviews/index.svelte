@@ -9,17 +9,6 @@
         reviews = await res.json();
     })
 
-
-// 
-
-// let reviews = [];
-
-// onMount(async() => {
-//     const res = await fetch(`http://127.0.0.1:8000/reviews/rev/`);
-//     reviews = await res.json();
-// })
-
-
 </script>
 
 <p on:click="{() => console.log( $url_reviews, reviews) }" >11111111111</p>
