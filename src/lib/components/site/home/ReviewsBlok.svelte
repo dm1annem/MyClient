@@ -1,6 +1,6 @@
 ,<script>
     import { onMount } from "svelte";
-    import {url_reviews} from '$lib/components/admin/reviews/reviews';
+    import {url_reviews} from '$lib/store/reviews/reviews';
 
     let reviews = [];
     let revs = [];
