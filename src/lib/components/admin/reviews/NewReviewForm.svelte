@@ -20,7 +20,7 @@ import {url_reviews} from '$lib/store/reviews/reviews';
           body: JSON.stringify(new_review)
         });
         let result = await response.json();
-        alert(result.message);
+        // alert(result.message);
         
         console.log( 'значения:', new_review );
         new_review.title = '';
@@ -38,7 +38,7 @@ import {url_reviews} from '$lib/store/reviews/reviews';
 </script>
 
 <div class="flex-auto px-4 lg:px-10 py-10 pt-0 bg-green-100"> 
-    <div>
+    <form on:submit|preventDefault="{ PostNewReview }">
         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
             Добавить отзыв
         </h6>
@@ -123,9 +123,9 @@ import {url_reviews} from '$lib/store/reviews/reviews';
             </div>
         </div>
 
-        <button on:click="{PostNewReview}" class="block bg-blue-400 hover:bg-green-600 text-white uppercase text-lg mx-auto p-4 rounded" type="submit">Добавить</button>
-
-    </div>
+        <button  class="block bg-blue-400 hover:bg-green-600 text-white uppercase text-lg mx-auto p-4 rounded" type="submit">Добавить</button> 
+        <!-- on:click="{PostNewReview}" -->
+    </form>
 
 
 </div>

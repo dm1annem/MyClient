@@ -34,6 +34,7 @@ export const links = writable([
      {name: 'Фейсбук', href: 'https://www.facebook.com/karkascentr/', class: 'fa-facebook'},
 ]);
 
+export let logo = writable('/static/img/logo3.jpg') 
 
 
 

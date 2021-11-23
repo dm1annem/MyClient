@@ -1,6 +1,8 @@
 <script>
     import {contakts, socialNetwork} from '$lib/settings/main-set';
-    let src = '/static/img/logo3.jpg';
+    import {logo} from '$lib/settings/main-set';
+    let src = $logo;
+
     
 </script>
 
