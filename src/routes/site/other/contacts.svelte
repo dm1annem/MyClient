@@ -1,5 +1,5 @@
 <script>
-    import {contakts, socialNetwork} from '$lib/components/site/layouts/set'
+    import {contakts, socialNetwork} from '$lib/settings/main-set'
 import Price from './price.svelte';
 </script>
 <div class="container py-6 md:py-12 md:py-20">
