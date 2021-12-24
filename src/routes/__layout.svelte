@@ -35,6 +35,7 @@ import MyFooter from '$lib/components/site/layouts/footer/Footer.svelte';
         grid-template-areas: "шапка" "контент" "подвал";
         min-height: 100vh;
         justify-content: center;
+        background-color: #f6f6f6
 
     }
 
