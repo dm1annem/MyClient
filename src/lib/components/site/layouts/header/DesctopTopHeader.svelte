@@ -40,7 +40,7 @@
     
         
     <div>
-        <a href="/admin">
+        <a href="/auth/login/">
             <i class="fa fa-sign-in  text-xl ml-1 text-gray-500 flex justify-end hover:text-yellow-600"></i>
         </a>
         

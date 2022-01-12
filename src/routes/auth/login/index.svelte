@@ -12,25 +12,27 @@
 </script>
 
 <script>
+// @ts-nocheck
+
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
-	// import { post } from '$lib/utils.ts';
-	// import ListErrors from '$lib/ListErrors.svelte';
+	import { post } from '$lib/components/auth/utils';
+	import ListErrors from '$lib/components/auth/ListErrors.svelte';
 
 	let email = '';
 	let password = '';
 	let errors = null;
 
 	async function submit(event) {
-		// const response = await post(`auth/login`, { email, password });
+		const response = await post(`/auth/auth/login`, { email, password });
 
-		// // TODO handle network errors
-		// errors = response.errors;
+		// TODO handle network errors
+		errors = response.errors;
 
-		// if (response.user) {
-		// 	$session.user = response.user;
-		// 	goto('/admin');
-		// }
+		if (response.user) {
+			$session.user = response.user;
+			goto('/auth/profile/');
+		}
 	}
 </script> 
 
@@ -41,29 +43,43 @@
 
 <div class="flex items-center justify-center mt-12 lg:mt-24">
 	<div class="w-full max-w-md">
-	  <form class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border mx-4">
-		<!-- @csrf -->
-		<div
-		  class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4"
-		>
-		  Вход в систему
-		</div>
-		<div class="mb-4">
-		  <label
-			class="block text-gray-700 text-sm font-normal mb-2"
-			for="username"
-		  >
-			Email
-		  </label>
-		  <input
-			class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-			name="email"
-			v-model="form.email"
-			type="email"
-			required
-			placeholder="Email"
-		  />
-		</div>
+
+		<ListErrors {errors}/>
+
+		<form on:submit|preventDefault={submit}>
+			<fieldset class="form-group">
+				<input class="form-control form-control-lg" type="email" required placeholder="username" bind:value={email}>
+			</fieldset>
+			<fieldset class="form-group">
+				<input class="form-control form-control-lg" type="password" required placeholder="Password" bind:value={password}>
+			</fieldset>
+			<button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+				Sign in
+			</button>
+		</form>
+
+	  	<!-- <form 
+		  on:submit|preventDefault={submit}
+		  class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border mx-4">
+		
+			<div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
+		 		 Вход в систему
+			</div>
+			<div class="mb-4">
+			  	<label
+				class="block text-gray-700 text-sm font-normal mb-2"
+				for="username">
+					username
+			  	</label>
+			  	<input
+				class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+				name="username"
+				
+				bind:value={username}
+				required
+				placeholder="username"
+			  	/>
+			</div>
 		<div class="mb-6">
 		  <label
 			class="block text-gray-700 text-sm font-normal mb-2"
@@ -73,12 +89,13 @@
 		  </label>
 		  <input
 			class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-			v-model="form.password"
+			
 			type="password"
 			placeholder="Password"
 			name="password"
 			required
 			autocomplete="current-password"
+			bind:value={password}
 		  />
 		</div>
 		<div class="flex items-center justify-between">
@@ -90,7 +107,7 @@
 			Забыли пароль?
 		  </a>
 		</div>
-	  </form>
+	  </form> -->
 	  <p class="text-center text-gray-500 text-xs">
 	  </p>
 	</div>
