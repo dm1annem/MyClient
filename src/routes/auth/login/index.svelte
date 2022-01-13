@@ -3,7 +3,7 @@
 		if (session.user) {
 			return {
 				status: 302,
-				redirect: '/'
+				redirect: '/auth/profile/'
 			};
 		}
 
@@ -19,12 +19,12 @@
 	import { post } from '$lib/components/auth/utils';
 	import ListErrors from '$lib/components/auth/ListErrors.svelte';
 
-	let email = '';
+	let username = '';
 	let password = '';
 	let errors = null;
 
 	async function submit(event) {
-		const response = await post(`/auth/auth/login`, { email, password });
+		const response = await post(`/auth/auth/login`, { username, password });
 
 		// TODO handle network errors
 		errors = response.errors;
@@ -46,16 +46,39 @@
 
 		<ListErrors {errors}/>
 
-		<form on:submit|preventDefault={submit}>
-			<fieldset class="form-group">
-				<input class="form-control form-control-lg" type="email" required placeholder="username" bind:value={email}>
+		<form on:submit|preventDefault={submit} class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border mx-4">
+
+			<div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
+				Пожалуйста авторизуйтесь
+		  	</div>
+
+			<fieldset class="mb-4">
+				
+				<input 
+				class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" 
+				type="text" 
+				required 
+				placeholder="username" 
+				bind:value={username}>
 			</fieldset>
-			<fieldset class="form-group">
-				<input class="form-control form-control-lg" type="password" required placeholder="Password" bind:value={password}>
+			<fieldset class="mb-6">
+
+				<input 
+				class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" 
+				type="password" 
+				required 
+				placeholder="Password" 
+				bind:value={password}>
 			</fieldset>
-			<button class="btn btn-lg btn-primary pull-xs-right" type="submit">
-				Sign in
-			</button>
+			<div class="flex items-center justify-between">
+				<button 
+				class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700" 
+				type="submit">
+					Войти
+				</button>
+
+			</div>
+			
 		</form>
 
 	  	<!-- <form 

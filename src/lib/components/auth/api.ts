@@ -1,6 +1,6 @@
-// const base = 'http://localhost:8000/api/token/';
+const base = 'http://127.0.0.1:8000/api/token/';
 
-const base = 'https://conduit.productionready.io/api';
+// const base = 'https://conduit.productionready.io/api';
 
 async function send({ method, path, data, token }) {
 	const opts:any = { method, headers: {} };
