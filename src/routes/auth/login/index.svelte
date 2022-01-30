@@ -14,7 +14,7 @@
 <script>
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
-	// import { post } from '$lib/utils.ts';
+	import { post } from '$lib/components/auth/api';
 	// import ListErrors from '$lib/ListErrors.svelte';
 
 	let email = '';
@@ -22,15 +22,15 @@
 	let errors = null;
 
 	async function submit(event) {
-		// const response = await post(`auth/login`, { email, password });
+		const response = await post(`jwt/create/`, { email, password });
 
 		// // TODO handle network errors
-		// errors = response.errors;
+		errors = response.errors;
 
-		// if (response.user) {
-		// 	$session.user = response.user;
-		// 	goto('/admin');
-		// }
+		if (response.user) {
+			$session.user = response.user;
+			goto('/auth/profile/');
+		}
 	}
 </script> 
 
@@ -51,7 +51,7 @@
 		<div class="mb-4">
 		  <label
 			class="block text-gray-700 text-sm font-normal mb-2"
-			for="username"
+			for="email"
 		  >
 			Email
 		  </label>
