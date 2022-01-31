@@ -3,8 +3,8 @@ import {api_path} from '$lib/settings/service-set'
 
 const base: string = `${api_path}auth`;
 
-async function send({ method, path, data, token })  {
-	const opts: {method: string, headers: {}, body?:any} = { method, headers: {} };
+async function send({ method, path, data, token }) {
+	const opts: {method: string, headers: {}, body?: string } = { method, headers: {} };
 
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
