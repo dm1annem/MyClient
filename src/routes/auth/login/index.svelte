@@ -1,40 +1,26 @@
-<script context="module">
-	export async function load({ session }) {
-		if (session.user) {
-			return {
-				status: 302,
-				redirect: '/auth/profile/'
-			};
-		}
-
-		return {};
-	}
-</script>
-
 <script>
-// @ts-nocheck
+import {goto} from '$app/navigation'
 
-	import { session } from '$app/stores';
-	import { goto } from '$app/navigation';
-	import { post } from '$lib/components/auth/utils';
-	import ListErrors from '$lib/components/auth/ListErrors.svelte';
+let email = '';
+let password = '';
 
-	let username = '';
-	let password = '';
-	let errors = null;
+async function submit(){
+    await fetch('http://127.0.0.1:8000/auth/token/login/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        // credentials: 'include',
+		credentials: 'include',
+        body: JSON.stringify({
+            email,
+            password
+        })
+    })
+    await goto('/auth/profile/')
 
-	async function submit(event) {
-		const response = await post(`/auth/auth/login`, { username, password });
+	console.log()
+}
 
-		// TODO handle network errors
-		errors = response.errors;
-
-		if (response.user) {
-			$session.user = response.user;
-			goto('/auth/profile/');
-		}
-	}
-</script> 
+</script>
 
 <svelte:head>
 	<title>Вход в систему - КаркасЦентр</title>
@@ -44,7 +30,7 @@
 <div class="flex items-center justify-center mt-12 lg:mt-24">
 	<div class="w-full max-w-md">
 
-		<ListErrors {errors}/>
+		<!-- <ListErrors {errors}/> -->
 
 		<form on:submit|preventDefault={submit} class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border mx-4">
 
@@ -56,10 +42,10 @@
 				
 				<input 
 				class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" 
-				type="text" 
+				type="email" 
 				required 
-				placeholder="username" 
-				bind:value={username}>
+				placeholder="email" 
+				bind:value={email}>
 			</fieldset>
 			<fieldset class="mb-6">
 
