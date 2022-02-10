@@ -40,7 +40,7 @@ onMount(async() =>{
         <MyHeader/>
 
     </div>
-    {#if loading}
+    {#if !loading}
     <div class="slot">
         <slot></slot>
     </div>
