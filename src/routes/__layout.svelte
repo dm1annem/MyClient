@@ -1,9 +1,9 @@
 <script lang="ts">
 import "../app.css";
 
-import userStore from '$lib/store/users/user';
-import type { User } from '$lib/settings/typs';
-import {api} from '$lib/settings/service-set';
+// import userStore from '$lib/store/users/user';
+// import type { User } from '$lib/settings/typs';
+// import {api} from '$lib/settings/service-set';
 
 
 import MyHeader from '$lib/components/site/layouts/header/Header.svelte';
@@ -12,26 +12,26 @@ import { onMount } from "svelte";
 
 let loading = true;
 
-onMount(async() =>{
-    // возвращаем токен при переходах на новые страницы, чтоб оставаться авторизованым, для этого
-    // проверяем есть ли токен пользователя в локальном хранилище
-    if (!localStorage.getItem('token')){
-        loading = false;
-        return { props: { user: null } };
-        console.log('первый иф');
+// onMount(async() =>{
+//     // возвращаем токен при переходах на новые страницы, чтоб оставаться авторизованым, для этого
+//     // проверяем есть ли токен пользователя в локальном хранилище
+//     if (!localStorage.getItem('token')){
+//         loading = false;
+//         return { props: { user: null } };
+//         console.log('первый иф');
 
-    }
-    // получаем данные пользователя при переходе на новую страницу, вычленяем токен и передаём его в заголовки и куки
-    const res = await fetch(`${$api}api/user/`,{
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    });
-    console.log('первый иф', res);
-    const user: User = await res.json();
-    loading = false;
-    if (res.ok){
-        $userStore = user
-    }
-})
+//     }
+//     // получаем данные пользователя при переходе на новую страницу, вычленяем токен и передаём его в заголовки и куки
+//     const res = await fetch(`${$api}api/user/`,{
+//         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+//     });
+//     console.log('первый иф', res);
+//     const user: User = await res.json();
+//     loading = false;
+//     if (res.ok){
+//         $userStore = user
+//     }
+// })
 </script>
 
 
@@ -40,11 +40,11 @@ onMount(async() =>{
         <MyHeader/>
 
     </div>
-    {#if !loading}
+    <!-- {#if !loading} -->
     <div class="slot">
         <slot></slot>
     </div>
-    {/if}
+    <!-- {/if} -->
     <div class="foot">
         <MyFooter/>
     </div>

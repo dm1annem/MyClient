@@ -3,33 +3,47 @@
     import { goto } from '$app/navigation';
     import user from '$lib/store/users/user';
 	import {api} from '$lib/settings/service-set';
+	import {post, browserSet} from '$lib/components/auth/utils'
 
 
     let email = '';
     let password = '';
 
-	async function login(){
-		const res = await fetch(`${$api}api/login/`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-			body: JSON.stringify({
-				email,
-				password,
-			})
-		});
-		console.log(res);
-
-		if (res.ok){
-			 const data: {user: User, jwt: string} = await res.json();
-			 localStorage.setItem("token", data.jwt)
-			 if(data){
-				 $user = data.user;
-				 goto('/auth/profile/')
-			 }
-		 }
-
-
+	async function login() {
+		console.log('Привет')
+		const json = await post(fetch, `${$api}api/login/`, {
+			email,
+			password
+		})
+		
+		if(json.jwt){
+			browserSet("jwt", json.jwt)
+		// 	goto('/auth/profile/')
+		}
 	}
+
+	// async function login(){
+	// 	const res = await fetch(`${$api}api/login/`, {
+	// 		method: 'POST',
+	// 		headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+	// 		body: JSON.stringify({
+	// 			email,
+	// 			password,
+	// 		})
+	// 	});
+	// 	console.log(res);
+
+	// 	if (res.ok){
+	// 		 const data: {user: User, jwt: string} = await res.json();
+	// 		 localStorage.setItem("token", data.jwt)
+	// 		 if(data){
+	// 			 $user = data.user;
+	// 			 goto('/auth/profile/')
+	// 		 }
+	// 	 }
+
+
+	// }
 </script>
 
 <div class="flex items-center justify-center mt-12 lg:mt-24">
