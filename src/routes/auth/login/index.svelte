@@ -1,49 +1,31 @@
-<script lang="ts">
-	import type { User } from '$lib/settings/typs';
+<script >
+	
     import { goto } from '$app/navigation';
-    import user from '$lib/store/users/user';
 	import {api} from '$lib/settings/service-set';
-	import {post, browserSet} from '$lib/components/auth/utils'
+
 
 
     let email = '';
     let password = '';
 
-	async function login() {
-		console.log('Привет')
-		const json = await post(fetch, `${$api}api/login/`, {
-			email,
-			password
+	const loginForm = async () => {
+		const loginData = await fetch('/auth/auth/login', {
+			method: 'POST',
+			body: JSON.stringify({
+				email,
+				password,
+			})
 		})
+
+	
 		
-		if(json.jwt){
-			browserSet("jwt", json.jwt)
-		// 	goto('/auth/profile/')
-		}
+		
+			// goto('/auth/profile/')
+		
 	}
 
-	// async function login(){
-	// 	const res = await fetch(`${$api}api/login/`, {
-	// 		method: 'POST',
-	// 		headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-	// 		body: JSON.stringify({
-	// 			email,
-	// 			password,
-	// 		})
-	// 	});
-	// 	console.log(res);
+	
 
-	// 	if (res.ok){
-	// 		 const data: {user: User, jwt: string} = await res.json();
-	// 		 localStorage.setItem("token", data.jwt)
-	// 		 if(data){
-	// 			 $user = data.user;
-	// 			 goto('/auth/profile/')
-	// 		 }
-	// 	 }
-
-
-	// }
 </script>
 
 <div class="flex items-center justify-center mt-12 lg:mt-24">
@@ -51,7 +33,7 @@
 
 		<!-- <ListErrors {errors}/> -->
 
-		<form on:submit|preventDefault={login} class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border mx-4">
+		<form on:submit|preventDefault={loginForm} class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border mx-4">
 
 			<div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
 				Пожалуйста авторизуйтесь
