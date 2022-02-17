@@ -1,7 +1,7 @@
 
 
-export  const post = async (requestq) =>{
-    const formData = JSON.parse(requestq.body)
+export  const post = async (request) =>{
+    const formData = JSON.parse(request.body)
     const password = formData.password
     const email = formData.email
 
@@ -13,15 +13,22 @@ export  const post = async (requestq) =>{
             password,
         })
     });
-    const resp = await data.json()
+    const response = await data.json();
+    const token = response.jwt
+    
 
     return {
+        headers: {
+            'set-cookie': `jwt=${token}; Path=/; HttpOnly`
+        },
         body: {
             form: { 
                 password,
                 email,
             },
-            re: resp
+            token
+            
+          
         }
     }
 
