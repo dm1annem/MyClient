@@ -9,13 +9,13 @@
 
 	const api = 'http://127.0.0.1:8000'
 
-    let email = '';
-    let password = '';
+    let email = 'z@a.com';
+    let password = 'z';
 
 	const login = async() => {
-		let response = await fetch(`${api}/api/login/`, {
+		let response = await fetch(`/auth/api/login`, {
 			method: 'POST',
-			headers: {'Content-Type': 'application/json; charset=utf-8'},
+			// headers: {'Content-Type': 'application/json; charset=utf-8'},
 			body: JSON.stringify({
 				email,
 				password,
