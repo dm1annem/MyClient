@@ -11,20 +11,29 @@
 
     let email = 'z@a.com';
     let password = 'z';
+	let error_message = '';
 
 	const login = async() => {
-		let response = await fetch(`/auth/api/login`, {
-			method: 'POST',
-			// headers: {'Content-Type': 'application/json; charset=utf-8'},
-			body: JSON.stringify({
-				email,
-				password,
-			})
-		});
+		try{
+			let response = await fetch(`/auth/api/login`, {
+				method: 'POST',
+				// headers: {'Content-Type': 'application/json; charset=utf-8'},
+				body: JSON.stringify({
+					email,
+					password,
+				})
+			});
 
 		let result = await response.json();
 
-		return console.log(result)
+		console.log(result);
+
+		goto('/auth/profile')
+		}catch(e){
+			error_message = `Произошла ошибка авторизации! // ( ${e.name}: ${e.message} )`
+		}
+
+		
 		
 	};
 
@@ -40,6 +49,7 @@
 			<div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
 				Пожалуйста авторизуйтесь
 		  	</div>
+			<span>{ error_message }</span>
 
 			<fieldset class="mb-4">
 				
