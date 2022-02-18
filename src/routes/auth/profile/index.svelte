@@ -1,19 +1,21 @@
-<script context="module">
+<!-- <script context="module">
     
 
-</script>
+</script> -->
 
 
 <script>
     import {session} from '$app/stores';
     
 
+    let zzz = 'aaaaa'
+
 </script>
 
 
 Профиль пользователя
 
-{ JSON.stringify($session) } 
+{JSON.stringify($session)} 
 
 <button>dutton</button>
 

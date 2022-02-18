@@ -6,13 +6,9 @@
 // }
 
 
-export const getSession = async (request) => {
+export function getSession(event) {
 
-    console.log(request)
     return {
-        user: {
-            asasa: 'asasass',
-            wqwqww: 'qwqwqwwq'
-        }
-    }
-}
+        user: 'qwqwqwwwq'
+    };
+};
