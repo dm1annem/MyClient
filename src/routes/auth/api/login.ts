@@ -18,6 +18,9 @@ export  const post = async (request) =>{
     });
     const response = await data.json();
     const token = response.jwt
+    const detail = response.detail
+
+   
     
 
     return {
@@ -25,14 +28,11 @@ export  const post = async (request) =>{
             'set-cookie': `jwt=${token}; Path=/; HttpOnly`
         },
         body: {
-            form: { 
-                password,
-                email,
-            },
-            token
-            
-          
+            detail,        
         }
     }
+
+  
+    
 
 }

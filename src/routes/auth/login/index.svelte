@@ -13,6 +13,10 @@
     let password = 'z';
 	let error_message = '';
 
+	function clearErrorMessage(){
+		error_message = ''
+	}
+
 	const login = async() => {
 		try{
 			let response = await fetch(`/auth/api/login`, {
@@ -25,6 +29,12 @@
 			});
 
 		let result = await response.json();
+
+		const detailMessage = result.detail
+
+	if(detailMessage){
+		error_message = detailMessage
+	}
 
 		console.log(result);
 
@@ -49,11 +59,12 @@
 			<div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
 				Пожалуйста авторизуйтесь
 		  	</div>
-			<span>{ error_message }</span>
+			<span class="text-red-500">{ error_message }</span>
 
 			<fieldset class="mb-4">
 				
 				<input 
+				on:focus="{clearErrorMessage}"
 				class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" 
 				type="email" 
 				required 
@@ -63,6 +74,7 @@
 			<fieldset class="mb-6">
 
 				<input 
+				on:focus="{clearErrorMessage}"
 				class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" 
 				type="password" 
 				required 
