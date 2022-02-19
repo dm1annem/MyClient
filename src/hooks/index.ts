@@ -7,8 +7,11 @@
 
 
 export function getSession(event) {
-
+    console.log(event);
     return {
-        user: 'qwqwqwwwq'
+        user: {
+            asas: 'qwqwqwwwq',
+            dfdfd: 'ddadadaad'
+        }
     };
 };
