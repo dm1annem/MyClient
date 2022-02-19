@@ -28,17 +28,14 @@
 				})
 			});
 
-		let result = await response.json();
+			let result = await response.json();
 
-		const detailMessage = result.detail
+			const detailMessage = result.detail
 
-	if(detailMessage){
-		error_message = detailMessage
-	}
-
-		console.log(result);
-
-		goto('/auth/profile')
+			if(detailMessage){
+				error_message = detailMessage
+			} else{ goto('/auth/profile') }
+	
 		}catch(e){
 			error_message = `Произошла ошибка авторизации! // ( ${e.name}: ${e.message} )`
 		}
