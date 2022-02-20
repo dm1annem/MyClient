@@ -1,17 +1,36 @@
-// export const handle = async ({ event, resolve }) =>{
-//     console.log(event)
-//     const response = await resolve(event)
-
-//     return {...response}
-// }
+import * as cookie from 'cookie'
 
 
-export function getSession(event) {
-    console.log(event);
+export async function handle({ request, resolve }) {
+    
+    const cookies = cookie.parse(request.headers.cookie || ""); // получаем куки из запроса
+    request.locals.user = cookies;
+
+    if(!cookies.jwt){
+        request.locals.user.authenticated = false;
+    } else{
+        request.locals.user.authenticated = true;
+    }
+    
+    
+    const response = await resolve(request);
+    
+   
+    return {
+        ...response,
+    
+    }  
+};
+
+
+export function getSession(request) {
+    
+    const authenticatedUser = request.locals.user.authenticated
+
     return {
         user: {
-            asas: 'qwqwqwwwq',
-            dfdfd: 'ddadadaad'
-        }
+            authenticatedUser,
+            message: 'hello'
+        }    
     };
 };

@@ -14,7 +14,8 @@ export async function get(){
 
     return {
         body: {
-            message: 'sucsess!!!'
+            message: 'sucsess!!!',
+            user
         }
     }
 
