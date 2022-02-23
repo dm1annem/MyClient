@@ -5,9 +5,9 @@
         if(session.user.authenticatedUser){
             const response = await fetch(`/auth/api/profile`);
 
-            const user = response.json();
+            const user = await response.json();
 
-            console.log(user)
+            console.log('aaaaaaaa', user)
             return {
                 props: {
                      user

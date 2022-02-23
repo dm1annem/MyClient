@@ -3,14 +3,14 @@
 
 
 export async function get(){
-    const response = await fetch(`http://127.0.0.1:8000/api/user`, {
+    const response = await fetch(`http://127.0.0.1:8000/api/user/`, {
         headers: {'Content-Type': 'application/json; charset=utf-8'},
         credentials: 'include',
     });
 
-    const user = response.json();
+    const user = await response.json();
 
-    console.log(user)
+    console.log('qqqqqqqqq', user)
 
     return {
         body: {
