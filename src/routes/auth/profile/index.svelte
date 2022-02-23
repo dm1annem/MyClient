@@ -5,9 +5,9 @@
         if(session.user.authenticatedUser){
             const response = await fetch(`/auth/api/profile`);
 
-            const user = await response.json();
+            const userData = await response.json();
+            const user = userData.user
 
-            console.log('из функции лоад в компаненте профиля', user)
             return {
                 props: {
                      user
@@ -17,24 +17,13 @@
             return {
                 props: {}
             }
-        }
-
-        
-        
-
+        }  
     }
 
 </script>
 
 
 <script>
-//     import {session} from '$app/stores'
-// import user from '$lib/store/users/user';
-
-    
-
-//     const isAuth = JSON.stringify($session.user.authenticatedUser)
-    
 
  export let user;   
 
@@ -43,7 +32,7 @@
 </script>
 
 
-Профиль пользователя {user.email}
+Профиль пользователя {user.name}
 
 
 <button>dutton</button>

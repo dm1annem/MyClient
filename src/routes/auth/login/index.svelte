@@ -1,4 +1,16 @@
-
+<script context="module">
+	export const load = async ({session}) => {
+		if(session.user.authenticatedUser){
+			console.log(';;;;;;;;;;;', session.user.authenticatedUser)
+			return {
+				status: 301,
+				redirect: '/auth/profile' 
+			}
+		}else{
+			return {}
+		}
+	}
+</script>
 
 <script>
 
@@ -9,8 +21,8 @@
 
 	const api = 'http://127.0.0.1:8000'
 
-    let email = 'z@a.com';
-    let password = 'z';
+    let email = '';
+    let password = '';
 	let error_message = '';
 
 	function clearErrorMessage(){
@@ -21,7 +33,6 @@
 		try{
 			let response = await fetch(`/auth/api/login`, {
 				method: 'POST',
-				// headers: {'Content-Type': 'application/json; charset=utf-8'},
 				body: JSON.stringify({
 					email,
 					password,
