@@ -6,7 +6,7 @@
             const response = await fetch(`/auth/api/profile`);
 
             const userData = await response.json();
-            const user = userData.user
+            const user = await userData.user
 
             return {
                 props: {
