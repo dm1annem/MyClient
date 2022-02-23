@@ -4,7 +4,10 @@
 
 export async function get(){
     const response = await fetch(`http://127.0.0.1:8000/api/user/`, {
-        headers: {'Content-Type': 'application/json; charset=utf-8'},
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Authorization': '111',
+        },
         credentials: 'include',
     });
 

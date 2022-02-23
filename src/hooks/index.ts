@@ -5,11 +5,12 @@ export async function handle({ request, resolve }) {
     
     const cookies = cookie.parse(request.headers.cookie || ""); // получаем куки из запроса
     request.locals.user = cookies;
-
+    console.log('Из хука: ', request)
     if(!cookies.jwt){
         request.locals.user.authenticated = false;
     } else{
         request.locals.user.authenticated = true;
+        request.headers.authorization = `Bearer ${request.locals.user.jwt}`
     }
     
     
