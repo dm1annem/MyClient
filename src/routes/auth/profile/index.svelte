@@ -7,7 +7,7 @@
 
             const user = await response.json();
 
-            console.log('aaaaaaaa', user)
+            console.log('из функции лоад в компаненте профиля', user)
             return {
                 props: {
                      user

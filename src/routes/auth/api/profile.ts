@@ -13,7 +13,7 @@ export async function get(){
 
     const user = await response.json();
 
-    console.log('qqqqqqqqq', user)
+    console.log('из эндпоинта профайл: ', user)
 
     return {
         body: {
