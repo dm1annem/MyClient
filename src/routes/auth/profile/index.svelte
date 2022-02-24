@@ -1,31 +1,22 @@
-<script context="module">
+<!-- <script context="module">
     export const load = async ({session, fetch}) => {
 
-
-        if(session.user.authenticatedUser){
-            const response = await fetch(`/auth/api/profile`);
-
-            const userData = await response.json();
-            const user = await userData.user
-
-            return {
-                props: {
-                     user
-                }
-            }
-        } else {
-            return {
-                props: {}
-            }
-        }  
-    }
-
-</script>
+</script> -->
 
 
 <script>
+//  export let user;  
+import {onMount} from 'svelte';
+import {session} from '$app/stores';
 
- export let user;   
+let user = {};
+
+onMount( async() => {
+    
+        const response = await fetch(`/auth/api/profile`);
+        const userData = await response.json();
+        user = userData.user    
+})
 
     
 

@@ -41,6 +41,8 @@
 
 			let result = await response.json();
 
+			console.log('резалт из логин компонента', result)
+
 			const detailMessage = result.detail
 
 			if(detailMessage){

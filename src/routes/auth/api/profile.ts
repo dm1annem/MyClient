@@ -3,7 +3,9 @@
 // import {handle} from 'src/hooks/index'
 
 
-export async function get(local){
+export async function get(local, request){
+
+
     const response = await fetch(`http://127.0.0.1:8000/api/user/`, {
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
@@ -15,6 +17,9 @@ export async function get(local){
     const user = await response.json();
 
     return {
+        headers: {
+            'set-cookie': `${local.headers.cookie}; Path=/; HttpOnly`
+        },
         body: {
             user
         }
