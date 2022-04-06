@@ -31,7 +31,7 @@ export const links = writable([
      {name: 'Одноклассники', href: 'https://ok.ru/karkascentr.ru', class: 'fa-odnoklassniki'},
      {name: 'Ютуб', href: 'https://www.youtube.com/channel/UCJoHMcmHq115v7XriMA5ZiQ?view_as=subscriber', class: 'fa-youtube-square'},
      {name: 'Инстаграм', href: 'https://www.instagram.com/karkascentr.ru/', class: 'fa-instagram'},
-     {name: 'Фейсбук', href: 'https://www.facebook.com/karkascentr/', class: 'fa-facebook'},
+    //  {name: 'Фейсбук', href: 'https://www.facebook.com/karkascentr/', class: 'fa-facebook'},
 ]);
 
 export let logo = writable('/static/img/logo3.jpg') 
