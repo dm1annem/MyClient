@@ -2,6 +2,11 @@
     import Input from '$lib/components/my/form/Input.svelte'
     let name;
     let foneNumber;
+    let input_pkg = {
+        placeholder: 'Имя',
+        label: 'Введите имя',
+        class_: 'placeholder-blueGray-600'
+    }
 
 </script>
 
@@ -11,7 +16,7 @@
             <input type="text"  placeholder="Имя" bind:value={name}>
             <input type="tel" placeholder="Телефон" bind:value={foneNumber}>
             <button>Оставить заявку</button>
-            <Input            />
+            <Input  {...input_pkg} />
 
         </form>
     </div>
