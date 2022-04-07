@@ -1,4 +1,6 @@
 <script context="module">
+	import Input from '$lib/components/my/form/Input.svelte'
+
 	export const load = async ({session}) => {
 		if(session.user.authenticatedUser){
 			
@@ -99,6 +101,12 @@
 				</button>
 
 			</div>
+			<div class="pt-4">
+				<Input  />
+			</div>
+
+			
+			
 			
 		</form>
     </div>
