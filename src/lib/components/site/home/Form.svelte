@@ -3,6 +3,7 @@
     let name;
     let foneNumber;
     let input_pkg = {
+        type: 'text',
         placeholder: 'Имя',
         label: 'Введите имя',
         class_: 'placeholder-blueGray-600'

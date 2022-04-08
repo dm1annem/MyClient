@@ -55,6 +55,7 @@
 			error_message = `Произошла ошибка авторизации! // ( ${e.name}: ${e.message} )`
 		}
 
+		// данные для инпутов в форме
 		
 		
 	};
@@ -73,6 +74,10 @@
 		  	</div>
 			<span class="text-red-500">{ error_message }</span>
 
+			<div class="py-4">
+				<Input   placeholder='Email' type='email' required/>
+			</div>
+			
 			<fieldset class="mb-4">
 				
 				<input 
@@ -81,7 +86,7 @@
 				type="email" 
 				required 
 				placeholder="email" 
-				bind:value={email}>
+				>
 			</fieldset>
 			<fieldset class="mb-6">
 
@@ -101,9 +106,7 @@
 				</button>
 
 			</div>
-			<div class="pt-4">
-				<Input  />
-			</div>
+			
 
 			
 			
